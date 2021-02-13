@@ -1,0 +1,7 @@
+name: DrwG
+main: me.coaixy.MineCraft.DrwG
+version: 1.0.0
+commands:
+  drw:
+    description: "达尔文游戏"
+    usage: "§e达尔文游戏"

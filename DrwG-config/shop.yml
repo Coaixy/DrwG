@@ -1,0 +1,25 @@
+§e普通的木剑:
+	type: Arm  #物品类型
+	min-damage: 2 
+	max-damage: 6 #伤害区间
+	money: 200 #价格
+	exp—limit: 200 #经验要求
+	describe: "普通的木剑/n初始者必备的道具"
+§e普通的皮革大衣:
+	type: Anti  #物品类型
+	Anti: 10 #抵御 10%的伤害
+	money: 200 #价格
+	exp—limit: 200 #经验要求
+	describe: "普通的防具/n初始者必备的道具"
+§e粗制吊坠:
+	type: Accessories  #物品类型
+	attribute:
+		- anti
+		- damage
+		- dodge
+	damage: 10
+	anti: 10
+	dodge: 10
+	money: 200 #价格
+	exp—limit: 200 #经验要求
+	describe: "基础饰品"
