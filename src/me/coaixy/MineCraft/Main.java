@@ -147,47 +147,51 @@ public class Main {
      * @return 配置完毕的物品
      */
     public static ItemStack setLore(ItemStack itemStack, String itemName) {
-        YamlConfiguration shopConfig = get_shopConfig();
-        int exp_limit = 0; //经验限制
-        String type = null; //装备类型
-        String describe = null; //装备描述
-        String typeName = null;//翻译后装备类型
-        exp_limit = shopConfig.getInt(itemName + ".exp—limit");
-        type = shopConfig.getString(itemName + ".type");
-        describe = shopConfig.getString(itemName + ".desribe");
-        String displayName = "[" + typeName + "]"; //展示名
-        displayName += itemName;
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(displayName); //这是展示名
-        List loreList = new ArrayList<String>();
-        Material material = Material.getMaterial("iron_axe");
-        switch (type) { //配置类型
-            case "Arm":
-                typeName = "武器";
-                material = Material.getMaterial("iron_axe");
-            case "Anti":
-                typeName = "防具";
-                material = Material.getMaterial("iron_helmet");
-            case "Accessories":
-                typeName = "饰品";
-                material = Material.getMaterial("IRON_ingot");
-            default:
-                typeName = "未知";
-                material = Material.getMaterial("iron_axe");
-        }
-        loreList.add("物品类型：" + typeName);
-        loreList.add("经验限制：" + exp_limit);
-        String describes[] = describe.split("\n");
-        for (int i = 0; i < describes.length; i++) {
-            if (i == 0) {
-                loreList.add("描述：" + describes[0]);
-            } else {
-                loreList.add("描述：" + describes[i]);
+        try{
+            YamlConfiguration shopConfig = get_shopConfig();
+            int exp_limit = 0; //经验限制
+            String type = null; //装备类型
+            String describe = null; //装备描述
+            String typeName = null;//翻译后装备类型
+            exp_limit = shopConfig.getInt(itemName + ".exp—limit");
+            type = shopConfig.getString(itemName + ".type");
+            describe = shopConfig.getString(itemName + ".desribe");
+            String displayName = "[" + typeName + "]"; //展示名
+            displayName += itemName;
+            ItemMeta itemMeta = itemStack.getItemMeta();
+            itemMeta.setDisplayName(displayName); //这是展示名
+            List loreList = new ArrayList<String>();
+            Material material = Material.getMaterial("iron_axe");
+            switch (type) { //配置类型
+                case "Arm":
+                    typeName = "武器";
+                    material = Material.getMaterial("iron_axe");
+                case "Anti":
+                    typeName = "防具";
+                    material = Material.getMaterial("iron_helmet");
+                case "Accessories":
+                    typeName = "饰品";
+                    material = Material.getMaterial("IRON_ingot");
+                default:
+                    typeName = "未知";
+                    material = Material.getMaterial("iron_axe");
             }
+            loreList.add("物品类型：" + typeName);
+            loreList.add("经验限制：" + exp_limit);
+            String describes[] = describe.split("\n");
+            for (int i = 0; i < describes.length; i++) {
+                if (i == 0) {
+                    loreList.add("描述：" + describes[0]);
+                } else {
+                    loreList.add("描述：" + describes[i]);
+                }
+            }
+            itemMeta.setLore(loreList);
+            itemStack.setItemMeta(itemMeta);
+            return itemStack;
+        }catch (Exception e){
+            return itemStack;
         }
-        itemMeta.setLore(loreList);
-        itemStack.setItemMeta(itemMeta);
-        return itemStack;
     }
 
     /**
@@ -215,19 +219,20 @@ public class Main {
         int anti = 0;
         String type = null;
         type = shopConfig.getString(itemName+".type");
-        switch (type) { //配置类型
-            case "Arm":
-                lores.put("type",0);
-                minDamage = shopConfig.getInt(itemName+".min-damage");
-                maxDamage = shopConfig.getInt(itemName+".max-damage");
-                lores.put("minDamage",minDamage);
-                lores.put("maxDamage",maxDamage);
-            case "Anti":
-                lores.put("type",1);
-                anti = shopConfig.getInt(itemName+".anti");
-                lores.put("anti",anti);
-            case "Accessories":
-                lores.put("type",2);
+        if(type.equalsIgnoreCase("Arm")){
+            lores.put("type",0);
+            minDamage = shopConfig.getInt(itemName+".min-damage");
+            maxDamage = shopConfig.getInt(itemName+".max-damage");
+            lores.put("minDamage",minDamage);
+            lores.put("maxDamage",maxDamage);
+        }
+        if (type.equalsIgnoreCase("anti")){
+            lores.put("type",1);
+            anti = shopConfig.getInt(itemName+".anti");
+            lores.put("anti",anti);
+        }
+        if (type.equalsIgnoreCase("accessories")){
+            lores.put("type",2);
         }
         return lores;
     }
