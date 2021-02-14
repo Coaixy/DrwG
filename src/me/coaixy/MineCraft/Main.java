@@ -162,19 +162,17 @@ public class Main {
             itemMeta.setDisplayName(displayName); //这是展示名
             List loreList = new ArrayList<String>();
             Material material = Material.getMaterial("iron_axe");
-            switch (type) { //配置类型
-                case "Arm":
-                    typeName = "武器";
-                    material = Material.getMaterial("iron_axe");
-                case "Anti":
-                    typeName = "防具";
-                    material = Material.getMaterial("iron_helmet");
-                case "Accessories":
-                    typeName = "饰品";
-                    material = Material.getMaterial("IRON_ingot");
-                default:
-                    typeName = "未知";
-                    material = Material.getMaterial("iron_axe");
+            if(type.equalsIgnoreCase("Arm")){
+                typeName = "武器";
+                material = Material.getMaterial("iron_axe");
+            }
+            if(type.equalsIgnoreCase("anti")){
+                typeName = "防具";
+                material = Material.getMaterial("iron_helmet");
+            }
+            if(type.equalsIgnoreCase("Accessories")){
+                typeName = "饰品";
+                material = Material.getMaterial("IRON_ingot");
             }
             loreList.add("物品类型：" + typeName);
             loreList.add("经验限制：" + exp_limit);
