@@ -4,6 +4,7 @@ import me.coaixy.MineCraft.Main;
 import me.coaixy.MineCraft.More.Exp;
 import me.coaixy.MineCraft.More.Money;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,6 +13,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.io.File;
 import java.io.IOException;
 
 import static me.coaixy.MineCraft.Main.setLore;
@@ -46,6 +48,7 @@ public class Die implements Listener {
         ItemStack second = new ItemStack(Material.APPLE);
         ItemStack newSecond = setLore(second,"§e普通的皮革大衣");
         player.getInventory().addItem(newFirst,newSecond);
+        Main.Scoreboard(player);
     }
 
 }

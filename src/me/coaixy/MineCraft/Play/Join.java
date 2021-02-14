@@ -1,5 +1,6 @@
 package me.coaixy.MineCraft.Play;
 
+import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,5 +21,10 @@ public class Join implements Listener {
         location = config.getInt("Wait.x")+" "+config.getInt("Wait.y")+" "+config.getInt("Wait.z");
         Main.executeCommand("tp "+player.getName()+" "+location);
         Main.Scoreboard(player);
+        Location bed = player.getLocation();
+        bed.setX(config.getInt("Wait.x"));
+        bed.setY(config.getInt("Wait.y"));
+        bed.setZ(config.getInt("Wait.z"));
+        player.setBedSpawnLocation(bed,true);
     }
 }

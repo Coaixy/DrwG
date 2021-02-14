@@ -33,6 +33,7 @@ public class Shop implements Listener{
                 ItemStack newItemStack = setLore(itemStack,itemName);
                 player.getInventory().addItem(newItemStack);//将物品添加进玩家背包
                 player.sendMessage("物品已发放给您");
+                Main.Scoreboard(player);
             }else{
                 player.sendMessage("购买失败 请检查自身情况");
             }

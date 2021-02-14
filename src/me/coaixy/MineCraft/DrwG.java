@@ -3,8 +3,10 @@ package me.coaixy.MineCraft;
 import me.coaixy.MineCraft.More.Shop;
 import me.coaixy.MineCraft.Play.Die;
 import me.coaixy.MineCraft.Play.Join;
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -52,7 +54,7 @@ public class DrwG extends JavaPlugin{
         getServer().getPluginManager().registerEvents(new Die(),this);
         getServer().getPluginManager().registerEvents(new Shop(),this);
         Main.getLore("§e普通的木剑");
-
+        Main.setLore(new ItemStack(Material.ACACIA_DOOR),"§e普通的木剑");
     }
 
 
