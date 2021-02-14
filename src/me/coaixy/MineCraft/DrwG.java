@@ -51,7 +51,10 @@ public class DrwG extends JavaPlugin{
         getServer().getPluginManager().registerEvents(new Join(),this);
         getServer().getPluginManager().registerEvents(new Die(),this);
         getServer().getPluginManager().registerEvents(new Shop(),this);
+        Main.getLore("§e普通的木剑");
+
     }
+
 
     @Override
     public void onDisable() {

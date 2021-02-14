@@ -178,18 +178,23 @@ public class Main {
             }
             loreList.add("物品类型：" + typeName);
             loreList.add("经验限制：" + exp_limit);
-            String describes[] = describe.split("\n");
-            for (int i = 0; i < describes.length; i++) {
-                if (i == 0) {
-                    loreList.add("描述：" + describes[0]);
-                } else {
-                    loreList.add("描述：" + describes[i]);
-                }
+            if(describe.contains("\n")){
+            	String describes[] = describe.split("\n");
+				for (int i = 0; i < describes.length; i++) {
+					if (i == 0) {
+						loreList.add("描述：" + describes[0]);
+					} else {
+						loreList.add("描述：" + describes[i]);
+					}
+				}
+            }else{
+				loreList.add("描述："+describe);
             }
             itemMeta.setLore(loreList);
             itemStack.setItemMeta(itemMeta);
             return itemStack;
         }catch (Exception e){
+            e.printStackTrace();
             return itemStack;
         }
     }
